@@ -1,0 +1,90 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+.dropzone {
+  border: 2px dashed #ccc;
+  padding: 20px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  margin-top: 20px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.dropzone.selected {
+  border-color: #5cb85c; /* Green color when file selected */
+}
+
+.dropzone input {
+  display: none;
+}
+
+.dropzone-label {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.selected-file {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.selected-file img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.or-text {
+  margin-top: 10px;
+  color: #ccc;
+}
+
+.google-drive-input {
+  margin-top: 10px;
+}
+
+.google-drive-input input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.convert-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.transcription {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
