@@ -150,15 +150,32 @@ h1 {
 .transcription {
   margin-top: 20px;
   font-size: 1.2em;
-  background-color: rgba(255, 255, 255, 0.1); /* Set the background opacity */
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  width: 100%;
-  height: 100px; /* Set the height of the textarea */
-  resize: none; /* Disable textarea resizing */
-  color: #fff;
+  white-space: nowrap; /* Prevent text from wrapping to the next line */
+  overflow: hidden; /* Hide overflowing characters */
+  border-right: 2px solid transparent; /* Create a blinking cursor */
+  animation: typing 1s steps(40) forwards, blink-caret 0.7s step-end infinite;
+  background-color: #efe8e8ac;
 }
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #1719186f; /* Adjust the cursor color */
+  }
+}
+
 /* Add this CSS for the loading spinner */
 /* Add this CSS for the loading spinner */
 .loading-spinner-container {
