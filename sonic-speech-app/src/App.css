@@ -1,17 +1,39 @@
 .App {
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
+/* .sound-wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.3);
+} */
+
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-image: url("./styles/sound-wave.jpg");
+  background-color: #08488c8c; /* Header background color */
+  min-height: 94.3vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(250, 246, 246);
+  padding: 20px; /* Add padding to the header */
 }
+
+.sonic-speech {
+  font-family: "Helvatica", sans-serif; /* Replace with your font */
+  font-size: 3em;
+  /* transform: scale(1.2) rotate(3deg); */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ... The rest of your CSS remains unchanged ... */
 
 h1 {
   font-size: 2em;
@@ -20,6 +42,7 @@ h1 {
 .dropzone {
   border: 2px dashed #ccc;
   padding: 20px;
+
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -28,6 +51,8 @@ h1 {
   border-radius: 5px;
   margin-top: 20px;
   transition: border-color 0.3s ease-in-out;
+  width: 60%;
+  background-color: rgba(167, 173, 181, 0.455);
 }
 
 .dropzone.selected {
@@ -52,8 +77,8 @@ h1 {
 }
 
 .selected-file img {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   margin-bottom: 10px;
 }
 
@@ -64,6 +89,7 @@ h1 {
 
 .google-drive-input {
   margin-top: 10px;
+  width: 60%;
 }
 
 .google-drive-input input {
@@ -74,7 +100,7 @@ h1 {
 }
 
 .convert-button {
-  background-color: #007bff;
+  background-color: #06a937;
   color: white;
   border: none;
   padding: 10px 20px;

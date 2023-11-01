@@ -25,8 +25,9 @@ function App() {
 
   return (
     <div className="App">
+      <div className="sound-wave"></div>
       <header className="App-header">
-        <h1>SonicSpeech</h1>
+        <h1 className="sonic-speech">SonicSpeech</h1>
         <div className={`dropzone ${selectedFile ? "selected" : ""}`}>
           <label className="dropzone-label">
             <input
