@@ -10,27 +10,35 @@ const headers = {
 
 function App() {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [filePath, setFilePath] = useState("");
+  const [audioUrl, setAudioUrl] = useState("");
   const [transcriptData, setTranscriptData] = useState(null);
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [fileSelected, setFileSelected] = useState(false);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
-    setFilePath(""); // Reset the text input when a file is selected
+    setAudioUrl(""); // Reset the audio URL when a file is selected
     setButtonDisabled(false);
+    setFileSelected(true);
   };
 
-  const handleFilePathChange = (event) => {
-    const userFilePath = event.target.value;
-    setFilePath(userFilePath);
-    setSelectedFile(null); // Reset the selected file when a file path is entered
+  const handleAudioUrlChange = (event) => {
+    const userAudioUrl = event.target.value;
+    setAudioUrl(userAudioUrl);
+    setSelectedFile(null); // Reset the selected file when an audio URL is entered
     setButtonDisabled(false);
+    setFileSelected(false); // Reset the fileSelected state
+  };
+
+  const resetFile = () => {
+    setSelectedFile(null);
+    setFileSelected(false);
   };
 
   const submitTranscriptionHandler = async () => {
-    if (selectedFile || filePath) {
+    if (selectedFile || audioUrl) {
       try {
         setIsLoading(true);
 
@@ -50,8 +58,8 @@ function App() {
             }
           );
           uploadUrl = uploadResponse.data.upload_url;
-        } else if (filePath) {
-          uploadUrl = filePath; // Use the user-provided file path
+        } else if (audioUrl) {
+          uploadUrl = audioUrl; // Use the user-provided audio URL
         }
 
         const data = {
@@ -117,9 +125,9 @@ function App() {
         <div className="google-drive-input">
           <input
             type="text"
-            placeholder="Enter file path (local or online)"
-            value={filePath}
-            onChange={handleFilePathChange}
+            placeholder="Enter audio URL (e.g., Google Drive link)"
+            value={audioUrl}
+            onChange={handleAudioUrlChange}
           />
         </div>
         <button
@@ -129,11 +137,23 @@ function App() {
         >
           Convert Speech to Text
         </button>
-        {transcriptData && transcriptData.status === "completed" ? (
-          <div className="transcription">{transcriptData.text}</div>
-        ) : (
-          isLoading && <p>Loading...</p>
-        )}
+        {isLoading ? (
+          <div className="loading-spinner-container">
+            <div className="loading-spinner"></div>
+          </div>
+        ) : transcriptData ? (
+          transcriptData.status === "completed" ? (
+            <textarea
+              className="transcription"
+              value={transcriptData.text}
+              readOnly
+            />
+          ) : (
+            <p className="error-message">
+              Transcription failed: {transcriptData.error}
+            </p>
+          )
+        ) : null}
       </header>
     </div>
   );
