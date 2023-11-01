@@ -1,25 +1,90 @@
 import React, { useState } from "react";
 import "./App.css";
+import axios from "axios";
+
+const baseUrl = "https://api.assemblyai.com/v2";
+
+const headers = {
+  authorization: "71b411162b434c088c145d351d96b67c",
+};
 
 function App() {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [transcription, setTranscription] = useState("");
+  const [filePath, setFilePath] = useState("");
+  const [transcriptData, setTranscriptData] = useState(null);
   const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
+    setFilePath(""); // Reset the text input when a file is selected
     setButtonDisabled(false);
   };
 
-  const handleGoogleDriveLink = () => {
-    // Add logic to handle Google Drive link input
-    // For example, you can make an API call to fetch the file
+  const handleFilePathChange = (event) => {
+    const userFilePath = event.target.value;
+    setFilePath(userFilePath);
+    setSelectedFile(null); // Reset the selected file when a file path is entered
+    setButtonDisabled(false);
   };
 
-  const convertToText = () => {
-    if (selectedFile) {
-      setTranscription(`File Name: ${selectedFile.name}`);
+  const submitTranscriptionHandler = async () => {
+    if (selectedFile || filePath) {
+      try {
+        setIsLoading(true);
+
+        let uploadUrl;
+
+        if (selectedFile) {
+          const formData = new FormData();
+          formData.append("file", selectedFile);
+          const uploadResponse = await axios.post(
+            `${baseUrl}/upload`,
+            formData,
+            {
+              headers: {
+                ...headers,
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
+          uploadUrl = uploadResponse.data.upload_url;
+        } else if (filePath) {
+          uploadUrl = filePath; // Use the user-provided file path
+        }
+
+        const data = {
+          audio_url: uploadUrl,
+        };
+
+        const url = `${baseUrl}/transcript`;
+        const response = await axios.post(url, data, { headers });
+        const transcriptId = response.data.id;
+        const pollingEndpoint = `${baseUrl}/transcript/${transcriptId}`;
+
+        while (true) {
+          const pollingResponse = await axios.get(pollingEndpoint, {
+            headers,
+          });
+          const transcriptionResult = pollingResponse.data;
+
+          if (transcriptionResult.status === "completed") {
+            setTranscriptData(transcriptionResult);
+            setIsLoading(false);
+            break;
+          } else if (transcriptionResult.status === "error") {
+            throw new Error(
+              `Transcription failed: ${transcriptionResult.error}`
+            );
+          } else {
+            await new Promise((resolve) => setTimeout(resolve, 3000));
+          }
+        }
+      } catch (error) {
+        console.error(error);
+        setIsLoading(false);
+      }
     }
   };
 
@@ -52,18 +117,23 @@ function App() {
         <div className="google-drive-input">
           <input
             type="text"
-            placeholder="Enter Google Drive link"
-            onChange={handleGoogleDriveLink}
+            placeholder="Enter file path (local or online)"
+            value={filePath}
+            onChange={handleFilePathChange}
           />
         </div>
         <button
-          onClick={convertToText}
+          onClick={submitTranscriptionHandler}
           className="convert-button"
           disabled={buttonDisabled}
         >
           Convert Speech to Text
         </button>
-        <div className="transcription">{transcription}</div>
+        {transcriptData && transcriptData.status === "completed" ? (
+          <div className="transcription">{transcriptData.text}</div>
+        ) : (
+          isLoading && <p>Loading...</p>
+        )}
       </header>
     </div>
   );
