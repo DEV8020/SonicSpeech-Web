@@ -15,7 +15,7 @@
 } */
 
 .App-header {
-  background-image: url("./styles/sound-wave.jpg");
+  background-image: url("../assets/sound-wave.jpg");
   background-color: #08488c8c; /* Header background color */
   min-height: 94.3vh;
   display: flex;

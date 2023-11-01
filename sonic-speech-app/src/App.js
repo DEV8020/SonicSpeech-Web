@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import "./App.css";
+import "./styles/App.css";
 import axios from "axios";
 
 const baseUrl = "https://api.assemblyai.com/v2";
-
+const apiKey = process.env.REACT_APP_ASSEMBLY_API_KEY;
 const headers = {
-  authorization: "71b411162b434c088c145d351d96b67c",
+  authorization: apiKey,
 };
 
 function App() {
