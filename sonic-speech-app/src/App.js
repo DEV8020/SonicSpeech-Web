@@ -16,6 +16,17 @@ const headers = {
 
 function App() {
   const [showTranscribePopup, setShowTranscribePopup] = useState(false);
+  const [uploadedFiles, setUploadedFiles] = useState([]);
+
+  const handleFileUpload = (file) => {
+    const newFile = {
+      name: file.name,
+      size: file.size,
+      date: new Date().toLocaleDateString(),
+    };
+
+    setUploadedFiles([...uploadedFiles, newFile]);
+  };
 
   const handleTranscribeButtonClick = () => {
     setShowTranscribePopup(true);
@@ -34,10 +45,12 @@ function App() {
         <div className="main">
           <Dashboard onTranscribeButtonClick={handleTranscribeButtonClick} />
 
-          <RecentFiles />
+          <RecentFiles uploadedFiles={uploadedFiles} />
         </div>
       </div>
-      {showTranscribePopup && <TranscribePopup onClose={onClose} />}
+      {showTranscribePopup && (
+        <TranscribePopup onClose={onClose} onFileUpload={handleFileUpload} />
+      )}
     </div>
   );
 }

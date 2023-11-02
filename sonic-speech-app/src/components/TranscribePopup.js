@@ -25,6 +25,7 @@ const TranscribePopup = (props) => {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
+    props.onFileUpload(file);
     setFilePath("");
     setButtonDisabled(false);
   };
