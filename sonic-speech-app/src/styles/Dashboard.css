@@ -1,0 +1,68 @@
+/* Dashboard.css */
+
+.dashboard {
+  display: block;
+  flex-wrap: wrap; /* Ensure items wrap to the next row if needed */
+  justify-content: left;
+  align-items: center;
+}
+
+.dashboard-section {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Added shadow for the lifted effect */
+  padding: 20px;
+  text-align: center;
+  width: 30%; /* Adjust the width as needed */
+  margin: 10px; /* Add margin for spacing between sections */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: center;
+}
+.dashboard-top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.dashboard-bottom {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.dashboard-top-left {
+  display: block;
+  justify-content: left;
+  padding: 2%;
+}
+.dashboard-welcome-text {
+  font-size: 36px;
+  font-weight: bold;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: black;
+}
+.dashboard-welcome-text-small {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+}
+.dashboard-button {
+  padding: 20px;
+}
+.dashboard-icons {
+  /* Adjust the icon size as needed */
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  font-size: medium;
+  border: 1px solid grey;
+}
+
+.dashboard-section p {
+  font-size: 16px; /* Adjust the text size as needed */
+  color: #333; /* Text color */
+  justify-content: left;
+}
