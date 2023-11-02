@@ -1,18 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./styles/App.css";
-import axios from "axios";
+
 import TopHeaderBar from "./components/TopHeaderBar";
 import SidePanel from "./components/SidePanel";
 import Dashboard from "./components/Dashboard";
-import TranscribeButton from "./components/TranscribeButton";
+
 import RecentFiles from "./components/RecentFiles";
 import TranscribePopup from "./components/TranscribePopup";
-
-const baseUrl = "https://api.assemblyai.com/v2";
-const apiKey = process.env.REACT_APP_ASSEMBLY_API_KEY;
-const headers = {
-  authorization: apiKey,
-};
 
 function App() {
   const [showTranscribePopup, setShowTranscribePopup] = useState(false);
@@ -27,7 +21,10 @@ function App() {
 
     setUploadedFiles([...uploadedFiles, newFile]);
   };
-
+  const handleDeleteFile = (fileName) => {
+    const updatedFiles = uploadedFiles.filter((file) => file.name !== fileName);
+    setUploadedFiles(updatedFiles);
+  };
   const handleTranscribeButtonClick = () => {
     setShowTranscribePopup(true);
   };
@@ -45,7 +42,10 @@ function App() {
         <div className="main">
           <Dashboard onTranscribeButtonClick={handleTranscribeButtonClick} />
 
-          <RecentFiles uploadedFiles={uploadedFiles} />
+          <RecentFiles
+            uploadedFiles={uploadedFiles}
+            onDeleteFile={handleDeleteFile}
+          />
         </div>
       </div>
       {showTranscribePopup && (

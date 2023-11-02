@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/RecentFiles.css";
 
 const RecentFiles = (props) => {
@@ -9,6 +9,7 @@ const RecentFiles = (props) => {
       <table className="recent-files-table">
         <thead>
           <tr>
+            <th></th> {/* Checkbox column */}
             <th>File Name</th>
             <th>File Size</th>
             <th>Upload Date</th>
@@ -17,6 +18,12 @@ const RecentFiles = (props) => {
         <tbody>
           {props.uploadedFiles.map((file, index) => (
             <tr key={index}>
+              <td>
+                <input
+                  type="checkbox"
+                  onChange={() => props.onDeleteFile(file.name)}
+                />
+              </td>
               <td>{file.name}</td>
               <td>{file.size} bytes</td>
               <td>{file.date}</td>

@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/TopHeaderBar.css";
-import { AiOutlineSearch } from "react-icons/ai";
+import { AiOutlineSearch, AiOutlineBell } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 const TopHeaderBar = () => {
   return (
@@ -12,6 +12,9 @@ const TopHeaderBar = () => {
         <div className="search-bar">
           <input type="text" placeholder="Search..." />
           <AiOutlineSearch />
+        </div>
+        <div className="bell-icon">
+          <AiOutlineBell />
         </div>
         <div className="profile-icon">
           <CgProfile />

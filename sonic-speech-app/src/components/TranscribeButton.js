@@ -3,7 +3,7 @@ import "../styles/TranscribeButton.css";
 const TranscribeButton = (props) => {
   return (
     <button className="transcribe-button" onClick={props.onClick}>
-      Transcribe
+      Transcribe file
     </button>
   );
 };

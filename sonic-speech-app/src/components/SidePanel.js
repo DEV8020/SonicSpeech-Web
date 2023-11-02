@@ -7,6 +7,7 @@ import {
 } from "react-icons/ai";
 import { BsBookmark, BsRocketTakeoffFill } from "react-icons/bs";
 import { BiShareAlt, BiSolidTrash, BiSupport } from "react-icons/bi";
+// import { Label } from "@mui/icons-material";
 
 const SidePanel = () => {
   return (
@@ -14,31 +15,31 @@ const SidePanel = () => {
       <div className="options">
         <div className="option">
           <AiOutlineHome />
-          Home
+          <label>Home</label>
         </div>
         <div className="option">
           <AiOutlineFolder />
-          All Files
+          <label>All Files</label>
         </div>
         <div className="option">
           <BsBookmark />
-          Saved
+          <label>Saved</label>
         </div>
         <div className="option">
           <BiShareAlt />
-          Integration
+          <label>Integration</label>
         </div>
         <div className="option">
           <BiSolidTrash />
-          Trash
+          <label>Trash</label>
         </div>
         <div className="option">
           <AiOutlineSetting />
-          Settings
+          <label>Settings</label>
         </div>
         <div className="option">
           <BiSupport />
-          Help and Support
+          <label>Help and Support</label>
         </div>
       </div>
       <div className="upgrade-section">

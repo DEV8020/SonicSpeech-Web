@@ -7,6 +7,7 @@
   align-items: center;
   padding: 15px;
   margin-right: 10px;
+  border-radius: 5px;
 }
 
 .options {
@@ -25,6 +26,9 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+}
+.option label {
+  margin-left: 10px;
 }
 .option:hover {
   background-color: #3498db98;

@@ -9,7 +9,7 @@ const Dashboard = (props) => {
     <div className="dashboard">
       <div className="dashboard-top">
         <div className="dashboard-top-left">
-          <div className="dashboard-welcome-text">Welcome Shakirat</div>
+          <div className="dashboard-welcome-text">Welcome devdatt</div>
           <div className="dashboard-welcome-text-small">
             upload your audio and video to convert to text
           </div>
@@ -24,13 +24,15 @@ const Dashboard = (props) => {
             <AiOutlineFolder />
           </div>
           {/* File Icon */}
-          <p>Uploaded File Count</p>
+          <p>100</p>
+          <p>Uploaded Files</p>
         </div>
         <div className="dashboard-section">
           <div className="dashboard-icons">
             <RxText />
           </div>{" "}
           {/* Floppy Disk Icon */}
+          <p>50</p>
           <p>Saved</p>
         </div>
         <div className="dashboard-section">
@@ -38,6 +40,7 @@ const Dashboard = (props) => {
             <BsBookmark />
           </div>
           {/* Headphones Icon */}
+          <p>20</p>
           <p>Transcribed</p>
         </div>
       </div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../styles/Popup.css";
 import { AiOutlineCloudUpload } from "react-icons/ai";
-import { useSpeechSynthesis } from "@readpanda/react-speech-kit";
+// import { useSpeechSynthesis } from "@readpanda/react-speech-kit";
 // import ReactFileDownload from "react-file-download";
 // import responsiveVoice from "responsivevoice";
 
