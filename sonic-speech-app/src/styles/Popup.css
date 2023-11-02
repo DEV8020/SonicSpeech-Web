@@ -13,7 +13,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   width: 40%;
-  height: 70%;
+  height: 80%;
   display: flex;
   flex-direction: column;
 }
@@ -45,6 +45,49 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.language-selection {
+  margin-bottom: 10px;
+}
+
+.language-selection label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.language-selection select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+}
+
+.download-audio,
+.generate-audio {
+  margin-top: 10px;
+}
+
+.convert-button,
+.download-audio button,
+.generate-audio button {
+  background-color: #1482cc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+}
+.convert-button:hover,
+.download-audio button:hover,
+.generate-audio button:hover {
+  background-color: #0056b3;
 }
 
 .popup-dropzone {
@@ -119,18 +162,6 @@
   margin-left: 10px;
   font-weight: bold;
   padding: 10px;
-}
-
-.convert-button {
-  background-color: #3498db;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  font-weight: bold;
 }
 
 .transcription {

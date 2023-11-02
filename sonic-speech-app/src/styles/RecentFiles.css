@@ -1,30 +1,46 @@
-/* Style for the RecentFiles component */
-.RecentFiles {
-  margin-top: 20px;
-  background-color: #fff;
+/* recentfiles.css */
+
+.recent-files-container {
+  margin: 20px;
   padding: 20px;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
 }
 
-/* Style for the table */
-table {
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+input[type="file"] {
+  margin-bottom: 10px;
+}
+
+.recent-files-table {
   width: 100%;
   border-collapse: collapse;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-/* Style for table header */
-th {
-  background-color: #0656a9;
+.recent-files-table th {
+  background-color: #007bff;
   color: #fff;
+  padding: 10px;
+  text-align: left;
 }
 
-/* Style for table cells */
-td {
+.recent-files-table th,
+.recent-files-table td {
+  border: 1px solid #ccc;
   padding: 10px;
 }
 
-/* Style for the delete checkboxes */
-.delete-checkbox {
-  transform: scale(1.5);
+.recent-files-table tbody tr:nth-child(odd) {
+  background-color: #f5f5f5;
+}
+
+.recent-files-table tbody tr:hover {
+  background-color: #e0e0e0;
 }

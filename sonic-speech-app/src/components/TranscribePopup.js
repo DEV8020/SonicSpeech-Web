@@ -87,6 +87,7 @@ const TranscribePopup = (props) => {
 
         const data = {
           audio_url: uploadUrl,
+          speaker_labels: speakerInfoChecked,
         };
 
         const url = `${baseUrl}/transcript`;
@@ -103,6 +104,7 @@ const TranscribePopup = (props) => {
           if (transcriptionResult.status === "completed") {
             setTranscriptData(transcriptionResult);
             setIsLoading(false);
+            setAudioUrl(null);
             break;
           } else if (transcriptionResult.status === "error") {
             throw new Error(
@@ -115,6 +117,7 @@ const TranscribePopup = (props) => {
       } catch (error) {
         console.error(error);
         setIsLoading(false);
+        setAudioUrl(null);
       }
     }
   };
@@ -146,7 +149,7 @@ const TranscribePopup = (props) => {
       const url = URL.createObjectURL(audioUrl);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "text-to-speech.wav"; // You can choose a different format.
+      a.download = "text-to-speech.mp3"; // You can choose a different format.
       a.click();
     }
   };
@@ -163,7 +166,7 @@ const TranscribePopup = (props) => {
           </div>
           <div className="popup-body">
             <div className="language-selection">
-              <label>Transcription Language:</label>
+              <label>Transcription Language</label>
               <select value={selectedLanguage} onChange={handleLanguageChange}>
                 <option value="english">English</option>
                 <option value="hindi">Hindi</option>
