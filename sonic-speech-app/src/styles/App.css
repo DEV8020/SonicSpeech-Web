@@ -1,210 +1,55 @@
-.App {
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* .sound-wave {
+/* Set a background color for the entire app */
+body {
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+}
+
+/* Style the sound wave element */
+.sound-wave {
+  background-color: #e8eef45d;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: -1;
+}
 
-  background-color: rgba(0, 0, 0, 0.3);
-} */
-
-.App-header {
-  background-image: url("../assets/sound-wave.jpg");
-  background-color: #08488c8c; /* Header background color */
-  min-height: 94.3vh;
+/* Define styles for the App container */
+.App {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: rgb(250, 246, 246);
-  padding: 20px; /* Add padding to the header */
+  height: 100vh;
 }
 
-.sonic-speech {
-  font-family: "Helvatica", sans-serif; /* Replace with your font */
-  font-size: 5em;
-  /* transform: scale(1.2) rotate(3deg); */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-/* ... The rest of your CSS remains unchanged ... */
-
-h1 {
-  font-size: 2em;
-}
-
-.dropzone {
-  border: 2px dashed #ccc;
+/* Add styles for the content area */
+.content {
+  display: flex;
+  flex: 1;
   padding: 20px;
+  overflow: hidden;
+}
 
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+/* Add styles for the main content area */
+.main {
+  flex: 4;
+  background-color: #fff;
+  padding: 20px;
   border-radius: 5px;
-  margin-top: 20px;
-  transition: border-color 0.3s ease-in-out;
-  width: 60%;
-  background-color: rgba(167, 173, 181, 0.455);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
-.dropzone.selected {
-  border-color: #5cb85c; /* Green color when file selected */
-}
-
-.dropzone input {
+/* Hide the TranscribePopup by default */
+.TranscribePopup {
   display: none;
 }
 
-.dropzone-label {
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.selected-file {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.selected-file img {
-  width: 60px;
-  height: 60px;
-  margin-bottom: 10px;
-}
-
-.or-text {
-  margin-top: 10px;
-  color: #ccc;
-}
-
-.google-drive-input {
-  margin-top: 10px;
-  width: 60%;
-}
-
-.google-drive-input input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.convert-button {
-  background-color: #06a937;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 1.2em;
-  border-radius: 5px;
-  margin-top: 20px;
-  cursor: pointer;
-}
-
-.transcription {
-  margin-top: 20px;
-  font-size: 1.2em;
-}
-
-/* Add this CSS for the reset button */
-.selected-file button {
-  background-color: #dc3545; /* Red color for the reset button */
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  font-size: 1em;
-  border-radius: 5px;
-  margin-top: 10px;
-  cursor: pointer;
-}
-
-.selected-file button:hover {
-  background-color: #c82333; /* Darker red when hovered */
-}
-.loading-dots {
-  font-size: 24px;
-  display: inline-block;
-  width: 3em;
-  text-align: center;
-}
-
-.loading-dots::after {
-  content: "\00a0\00a0\00a0"; /* Three dots */
-  animation: loading-dots-animation 1s steps(3, end) infinite;
-}
-
-@keyframes loading-dots-animation {
-  to {
-    width: 1em;
-  }
-}
-.transcription {
-  margin-top: 20px;
-  font-size: 1.2em;
-  white-space: nowrap; /* Prevent text from wrapping to the next line */
-  overflow: hidden; /* Hide overflowing characters */
-  border-right: 2px solid transparent; /* Create a blinking cursor */
-  animation: typing 1s steps(40) forwards, blink-caret 0.7s step-end infinite;
-  background-color: #efe8e8ac;
-}
-
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-@keyframes blink-caret {
-  from,
-  to {
-    border-color: transparent;
-  }
-  50% {
-    border-color: #1719186f; /* Adjust the cursor color */
-  }
-}
-
-/* Add this CSS for the loading spinner */
-/* Add this CSS for the loading spinner */
-.loading-spinner-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
-}
-
-.loading-spinner {
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top: 4px solid #06a937; /* Adjust the color as needed */
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-/* Add this CSS for the error message */
-.error-message {
-  color: #dc3545; /* Red color for error message */
-  font-size: 1.2em;
-  margin-top: 20px;
-}
+/* Add more styles as needed for TopHeaderBar, SidePanel, Dashboard, TranscribeButton, RecentFiles, and TranscribePopup components */

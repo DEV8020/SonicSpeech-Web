@@ -1,0 +1,22 @@
+/* Style for the TranscribeButton component */
+.TranscribeButton {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Style for the transcribe button */
+.transcribe-button {
+  background-color: #0755a8ed;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.transcribe-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

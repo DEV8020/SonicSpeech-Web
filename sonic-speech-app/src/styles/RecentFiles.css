@@ -1,0 +1,30 @@
+/* Style for the RecentFiles component */
+.RecentFiles {
+  margin-top: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Style for table header */
+th {
+  background-color: #0656a9;
+  color: #fff;
+}
+
+/* Style for table cells */
+td {
+  padding: 10px;
+}
+
+/* Style for the delete checkboxes */
+.delete-checkbox {
+  transform: scale(1.5);
+}
