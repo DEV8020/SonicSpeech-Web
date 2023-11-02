@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../styles/Popup.css";
 import { AiOutlineCloudUpload } from "react-icons/ai";
-// import { useSpeechSynthesis } from "react-speech-kit";
+import { useSpeechSynthesis } from "@readpanda/react-speech-kit";
+// import ReactFileDownload from "react-file-download";
+// import responsiveVoice from "responsivevoice";
 
 const baseUrl = "https://api.assemblyai.com/v2";
 const apiKey = process.env.REACT_APP_ASSEMBLY_API_KEY;
@@ -18,6 +20,7 @@ const TranscribePopup = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [speakerInfoChecked, setSpeakerInfoChecked] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState("english");
+  const [audioUrl, setAudioUrl] = useState(null);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -118,6 +121,35 @@ const TranscribePopup = (props) => {
   const handleLanguageChange = (event) => {
     setSelectedLanguage(event.target.value);
   };
+  const generateAudioFromText = () => {
+    if (transcriptData && transcriptData.text) {
+      const textToSpeech = transcriptData.text;
+      if (textToSpeech.trim() === "") {
+        alert("Please enter some text to convert to audio.");
+        return;
+      }
+
+      const utterance = new SpeechSynthesisUtterance(textToSpeech);
+      const voices = window.speechSynthesis.getVoices();
+      utterance.voice = voices[0]; // You can choose a different voice if available.
+
+      utterance.onend = () => {
+        const audioBlob = new Blob([new Uint8Array(utterance.audioBuffer)]);
+        setAudioUrl(audioBlob);
+      };
+
+      window.speechSynthesis.speak(utterance);
+    }
+  };
+  const downloadAudio = () => {
+    if (audioUrl) {
+      const url = URL.createObjectURL(audioUrl);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "text-to-speech.wav"; // You can choose a different format.
+      a.click();
+    }
+  };
 
   return (
     <div className="popup">
@@ -194,11 +226,24 @@ const TranscribePopup = (props) => {
             {transcriptData &&
             !isLoading &&
             transcriptData.status === "completed" ? (
-              <textarea
-                className="transcription"
-                value={transcriptData.text}
-                readOnly
-              />
+              <div>
+                <textarea
+                  className="transcription"
+                  value={transcriptData.text}
+                  readOnly
+                />
+                {audioUrl ? (
+                  <div className="download-audio">
+                    <button onClick={downloadAudio}>Download Audio</button>
+                  </div>
+                ) : (
+                  <div className="generate-audio">
+                    <button onClick={generateAudioFromText}>
+                      Generate Audio
+                    </button>
+                  </div>
+                )}
+              </div>
             ) : isLoading ? (
               <div className="loading-spinner-container">
                 <div className="loading-spinner"></div>

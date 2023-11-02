@@ -17,6 +17,7 @@
 
 .option {
   display: flex;
+  flex-direction: row;
   background-color: white;
   color: #3c3b3b;
   padding: 10px;
