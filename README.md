@@ -26,17 +26,20 @@ SonicSpeech is a web-based application that allows you to transcribe audio/video
     git clone https://github.com/yourusername/SonicSpeech.git
 
 3. Navigate to the project directory:
-    cd SonicSpeech
+    ```shell
+      cd SonicSpeech
 
 5. Install the required dependencies:
-    npm install
+   ```shell
+       npm install
 
    
 7. Set up your AssemblyAI API Key:
 
 Create a .env file in the project root.
 Add your AssemblyAI API Key to the .env file:
-  REACT_APP_ASSEMBLY_API_KEY=your_api_key_here
+    ```shell
+         REACT_APP_ASSEMBLY_API_KEY=your_api_key_here
 
 #  Usage
 Start the development server:
@@ -77,5 +80,5 @@ If you have any questions or issues, feel free to contact us:
 We would like to thank the following libraries and services for making SonicSpeech possible:
 
 AssemblyAI API
-responsivevoice
+react-speech-kit
 
